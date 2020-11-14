@@ -14,3 +14,70 @@
  *= require_self
  */
 @import 'bootstrap';
+
+html, .bg {
+    background-color: white;
+    font-size: 1.125em; /* 18 / 16 = 1.125 */
+    line-height: 1.2222222222em; /* 22 / 18 = 1.2222222222 */
+    align-content: center;
+    margin: auto;
+}
+
+.btn-outline-success {
+    color: mediumpurple;
+    border-color: mediumpurple;
+}
+
+.btn-outline-success:hover {
+    color: white;
+    border-color: mediumpurple;
+    background-color: mediumpurple;
+}
+
+.btn-success {
+    border-color: mediumpurple;
+    background-color: mediumpurple;
+}
+
+.btn-success:hover {
+    border-color: rebeccapurple;
+    background-color: rebeccapurple;
+}
+
+.btn-primary {
+    border-color: goldenrod;
+    background-color: goldenrod;
+}
+
+.btn-primary:hover {
+    border-color: darkgoldenrod;
+    background-color: darkgoldenrod;
+}
+
+.navbar-brand, div h1 {
+    color: goldenrod;
+    font-weight: bold;
+    font-style: normal;
+}
+
+em {
+    color: mediumpurple;
+    font-weight: bold;
+    font-style: normal;
+}
+
+#User {
+    float: right;
+    display: block;
+    padding: 1.2222222222em 1.2222222222em; /* 22 / 18 = 1.2222222222 */
+}
+
+.carousel-inner {
+    margin: auto;
+    width: 35.5555555556em; /* 640 / 18 = 35.5555555556 */
+}
+
+.required:after {
+    content: "*";
+    color: red;
+}
