@@ -3,7 +3,7 @@
 <div>
    <%= form_with(url: "/upload/create", method: "post") do |f| %>
       <%= f.label :attachment, "Upload an image of a pole" %>
-      <%= f.file_field :attachment %>
+      <%= f.file_field :attachment, multiple: true %>
       <%= f.submit "Upload", class: "btn btn-primary" %>
    <% end %>
 </div>
