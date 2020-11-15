@@ -52,7 +52,7 @@
       var assets = Object.keys(pole);
       assets.splice(assets.indexOf("ycoord"), 1);
       assets.splice(assets.indexOf("xcoord"), 1);
-      var annotation = new MarkerAnnotation(loc, { callout: landmarkAnnotationCallout, data: [assets.join(" "), poles.indexOf(pole)], color: "#f4a56d", title: "", glyphText: "🔌", draggable: true })
+      var annotation = new MarkerAnnotation(loc, { callout: landmarkAnnotationCallout, data: [assets.join(" "), poles.indexOf(pole)], color: "#f4a56d", title: "", glyphText: "🔌" })
       markers.push(annotation);
 
       var coordinate = new mapkit.Coordinate(pole["ycoord"], pole["xcoord"]),
