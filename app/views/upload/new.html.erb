@@ -1,2 +1,9 @@
 <h1>Upload#new</h1>
-<p>Find me in app/views/upload/new.html.erb</p>
+<p>Upload an image of a pole</p>
+<div>
+   <%= form_with(url: "/upload/create", method: "post") do |f| %>
+      <%= f.label :attachment, "Upload an image of a pole" %>
+      <%= f.file_field :attachment, multiple: true %>
+      <%= f.submit "Upload", class: "btn btn-primary" %>
+   <% end %>
+</div>
