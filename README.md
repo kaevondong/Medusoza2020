@@ -7,7 +7,7 @@ Team Medusozoa: Kevin Dong, Andrew Lubinger, Gary Isufi, Noah Limes
 * Rails 6.0.3.4+
 * Yarn 1.22.5+
 * npm 6.14.6+
-* Nodejs 10.22.0
+* Nodejs 10.15.3+
 * Boostrap 4.5.0+
 * JQuery 3.5.1+
 * popperjs 1.16.1+
