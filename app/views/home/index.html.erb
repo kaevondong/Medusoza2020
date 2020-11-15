@@ -1,6 +1,120 @@
-<div class="container-fluid bg text-center">
+<div class="container-fluid bg text-center pr-0 pl-0" style="background-color: #222;">
   <br>
   <h1><em>Poles</em> Map</h1>
   <br>
-  <% @poles %>
+
+  <div id="map" style="width: 100%; height: 750px;"></div>
+
+  <script>
+    var poles = JSON.parse("<%=@poles.to_json%>".replaceAll("&quot;","\""));
+
+    const tokenID = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ikw3RkYyUVZNNTcifQ.eyJpc3MiOiJMQUZHUUo0UkQ4IiwiaWF0IjoxNjA1NDExMTE5LCJleHAiOjE2MDU2NTc2MDB9.ek5vImX32j4o-g1O7dt7qmubVmYa9g5_Wwiu5XaWldFxjZYoULY0mStx6IVZqNsxPtPTb--3T0Kmehthzfr22Q";
+  
+    mapkit.init({
+    authorizationCallback: function(done) {
+        done(tokenID);
+    }});
+
+    var MarkerAnnotation = mapkit.MarkerAnnotation
+
+    var cbusRegion = new mapkit.CoordinateRegion(
+        new mapkit.Coordinate(39.9612, -82.9988),
+        new mapkit.CoordinateSpan(0.167647972, 0.354985255)
+    );
+    var map = new mapkit.Map("map");
+
+    map.colorScheme = mapkit.Map.ColorSchemes.Dark;
+
+    // Landmark annotation callout delegate
+    var CALLOUT_OFFSET = new DOMPoint(-148, -78);
+    var landmarkAnnotationCallout = {
+        calloutElementForAnnotation: function(annotation) {
+            return calloutForLandmarkAnnotation(annotation);
+        },
+    
+        calloutAnchorOffsetForAnnotation: function(annotation, element) {
+            return CALLOUT_OFFSET;
+        },
+    
+        calloutAppearanceAnimationForAnnotation: function(annotation) {
+            return ".4s cubic-bezier(0.4, 0, 0, 1.5) 0s 1 normal scale-and-fadein";
+        }
+    };
+
+    var markers = [];
+    var coverages = []
+    //var poles = [[39.91868883204896, -82.86456906501846, false, "pole crossarm insulator"], [39.99693913242474, -83.03474204013368, true, "pole crossarm insulator"]]
+
+    // poles.splice(poles.length/8);
+    // console.log(poles.length);
+    for (const pole of poles) {
+      var loc = new mapkit.Coordinate(pole["ycoord"], pole["xcoord"]);
+      var assets = Object.keys(pole);
+      assets.splice(assets.indexOf("ycoord"), 1);
+      assets.splice(assets.indexOf("xcoord"), 1);
+      var annotation = new MarkerAnnotation(loc, { callout: landmarkAnnotationCallout, data: [assets.join(" "), poles.indexOf(pole)], color: "#f4a56d", title: "", glyphText: "🔌" })
+      markers.push(annotation);
+
+      var coordinate = new mapkit.Coordinate(pole["ycoord"], pole["xcoord"]),
+        radius = 1000 // radius is expressed in meters
+        coverage = new mapkit.CircleOverlay(coordinate, radius);
+      coverage.data = { coverage: 1000 };
+      if (false) {
+        //Pole is down. Outage.
+        coverage.style = new mapkit.Style({
+            lineWidth: 2,         // 2 CSS pixels
+            strokeColor: "#FF0000",
+            fillColor: "#FF0000"
+        });
+      } else {
+        //Pole is operational.
+        coverage.style = new mapkit.Style({
+            lineWidth: 2,         // 2 CSS pixels
+            strokeColor: "#999",
+            fillColor: null
+        });
+      }
+      coverages.push(coverage);
+    }
+
+    map.showItems(markers);
+
+    map.addOverlays(coverages);
+
+    var itemIndex = -1;
+
+    map.addEventListener("select", function(event) {
+      itemIndex = event.annotation.data[1];
+    });
+
+    map.addEventListener("long-press", function() {
+      var coverage = coverages[itemIndex];
+      if (coverage.style.strokeColor == "#999") {
+        coverage.style.strokeColor = "#FF0000";
+      } else {
+        coverage.style.strokeColor = "#999";
+      }
+    });
+
+    map.region = cbusRegion;
+
+    // Landmark annotation custom callout
+    function calloutForLandmarkAnnotation(annotation) {
+      var div = document.createElement("div");
+      div.className = "pole";
+  
+      var title = div.appendChild(document.createElement("h1"));
+      title.textContent = annotation.data[0];
+  
+      var section = div.appendChild(document.createElement("section"));
+  
+      var toggle = section.appendChild(document.createElement("p"));
+      toggle.textContent = annotation.coordinate.latitude;
+      var toggle = section.appendChild(document.createElement("p"));
+      toggle.textContent = annotation.coordinate.longitude;
+  
+      return div;
+    }
+  </script>
+
 </div>
