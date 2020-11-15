@@ -1,24 +1,25 @@
-# README
+# PoleRequest
+Web Application for tracking utility poles.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependencies
+* Ruby Version 2.7.2
+* Rails Version 6.0.3.4
+* Boostrap 4.5.0
+* Jquery
+* Apple Maps API
 
-Things you may want to cover:
+## Setup
+1. Install Dependencies
 
-* Ruby version
 
-* System dependencies
+        $ gem install bundler
+        $ bundle install
 
-* Configuration
 
-* Database creation
+2. Run Local Server
 
-* Database initialization
 
-* How to run the test suite
+        $ rails s
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+3. :beers: Enjoy :beers:
