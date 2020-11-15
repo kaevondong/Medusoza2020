@@ -1,24 +1,31 @@
-# README
+# PoleRequest V1.0
+Web Application for tracking utility poles.
+Team Medusozoa: Kevin Dong, Andrew Lubinger, Gary Isufi, Noah Limes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tools Used
+* Ruby 2.7.2+
+* Rails 6.0.3.4+
+* Yarn 1.22.5+
+* npm 6.14.6+
+* Nodejs 10.22.0
+* Boostrap 4.5.0+
+* JQuery 3.5.1+
+* popperjs 1.16.1+
+* Apple Maps API
 
-Things you may want to cover:
+## Setup
+1. Install Dependencies
 
-* Ruby version
 
-* System dependencies
+        $ gem install bundler
+        $ bundle install
+        $ npm install
 
-* Configuration
 
-* Database creation
+2. Run Local Server
 
-* Database initialization
 
-* How to run the test suite
+        $ rails s
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+3. :beers: Enjoy :beers:
