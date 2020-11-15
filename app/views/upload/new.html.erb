@@ -1,9 +1,12 @@
-<h1>Upload#new</h1>
-<p>Upload an image of a pole</p>
-<div>
-   <%= form_with(url: "/upload/create", method: "post") do |f| %>
-      <%= f.label :attachment, "Upload an image of a pole" %>
-      <%= f.file_field :attachment, multiple: true %>
-      <%= f.submit "Upload", class: "btn btn-primary" %>
-   <% end %>
+<div class="container-fluid bg text-center pr-0 pl-0" style="background-color: #222;">
+  <h1 class="p-5"><em>Upload</em>Pole</h1>
+  <div style="color: white;">
+    <%= form_with(url: "/upload/create", method: "post") do |f| %>
+      <div class="pr-5 pl-5 form-group">
+        <%= f.label :attachment, "Upload an image (or multiple images) of a pole", class:"control-label mb-3" %>
+        <%= f.file_field :attachment, multiple: true, class:"form-control mb-3" %>
+        <%= f.submit "Upload", class: "form-control btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>

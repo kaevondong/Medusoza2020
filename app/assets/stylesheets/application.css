@@ -16,7 +16,7 @@
 @import 'bootstrap';
 
 html, .bg {
-    background-color: white;
+    background-color: #222223;
     font-size: 1.125em; /* 18 / 16 = 1.125 */
     line-height: 1.2222222222em; /* 22 / 18 = 1.2222222222 */
     align-content: center;
