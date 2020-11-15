@@ -52,7 +52,7 @@
       var assets = Object.keys(pole);
       assets.splice(assets.indexOf("ycoord"), 1);
       assets.splice(assets.indexOf("xcoord"), 1);
-      var annotation = new MarkerAnnotation(loc, { callout: landmarkAnnotationCallout, data: assets.join(" "), color: "#f4a56d", title: "", glyphText: "🔌" })
+      var annotation = new MarkerAnnotation(loc, { callout: landmarkAnnotationCallout, data: [assets.join(" "), poles.indexOf(pole)], color: "#f4a56d", title: "", glyphText: "🔌", draggable: true })
       markers.push(annotation);
 
       var coordinate = new mapkit.Coordinate(pole["ycoord"], pole["xcoord"]),
@@ -80,6 +80,22 @@
     map.showItems(markers);
 
     map.addOverlays(coverages);
+
+    var itemIndex = -1;
+
+    map.addEventListener("select", function(event) {
+      itemIndex = event.annotation.data[1];
+    });
+
+    map.addEventListener("long-press", function() {
+      var coverage = coverages[itemIndex];
+      if (coverage.style.strokeColor == "#999") {
+        coverage.style.strokeColor = "#FF0000";
+      } else {
+        coverage.style.strokeColor = "#999";
+      }
+    });
+
     map.region = cbusRegion;
 
     // Landmark annotation custom callout
@@ -88,13 +104,14 @@
       div.className = "pole";
   
       var title = div.appendChild(document.createElement("h1"));
-      title.textContent = annotation.data;
+      title.textContent = annotation.data[0];
   
       var section = div.appendChild(document.createElement("section"));
   
-      var phone = section.appendChild(document.createElement("button"));
-      phone.textContent = "Toggle Outage";
-      phone.onClick = function(){console.log("TEST");};
+      var toggle = section.appendChild(document.createElement("p"));
+      toggle.textContent = annotation.coordinate.latitude;
+      var toggle = section.appendChild(document.createElement("p"));
+      toggle.textContent = annotation.coordinate.longitude;
   
       return div;
     }
