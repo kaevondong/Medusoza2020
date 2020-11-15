@@ -1,11 +1,16 @@
 # PoleRequest
 Web Application for tracking utility poles.
+Team Medusozoa: Kevin Dong, Andrew Lubinger, Gary Isufi, Noah Limes
 
-## Dependencies
-* Ruby Version 2.7.2
-* Rails Version 6.0.3.4
-* Boostrap 4.5.0
-* Jquery
+## Tools Used
+* Ruby 2.7.2+
+* Rails 6.0.3.4+
+* Yarn 1.22.5+
+* npm 6.14.6+
+* Nodejs 10.22.0
+* Boostrap 4.5.0+
+* JQuery 3.5.1+
+* popperjs 1.16.1+
 * Apple Maps API
 
 ## Setup
@@ -14,6 +19,7 @@ Web Application for tracking utility poles.
 
         $ gem install bundler
         $ bundle install
+        $ npm install
 
 
 2. Run Local Server
