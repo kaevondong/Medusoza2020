@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'upload/index'
   get 'upload/show'
   get 'upload/new'
+  post 'upload/create'
   get 'upload/edit'
   get 'home/index'
   root 'home#index'
