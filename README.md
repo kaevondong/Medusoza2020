@@ -1,4 +1,4 @@
-# PoleRequest
+# PoleRequest V1.0
 Web Application for tracking utility poles.
 Team Medusozoa: Kevin Dong, Andrew Lubinger, Gary Isufi, Noah Limes
 
